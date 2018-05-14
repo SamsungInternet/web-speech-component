@@ -2,6 +2,7 @@ var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
 var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
 var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
 let recognition = null;
+let bgcol = '#0096FF';
 
 //-- defines the custom element 
 class WebSpeechWrapper extends HTMLElement {
@@ -22,13 +23,13 @@ class WebSpeechWrapper extends HTMLElement {
         btn_mic_2d.appendChild(ico_dom_2d);
         btn_mic_2d.onclick = function() {
             recognition.start();
+            console.log(document.querySelector('web-speech').shadowRoot.querySelector('.btn-mic-2d').style.backgroundColor = 'red');
             console.log('Ready to receive a command.');
         }
-        let bgcol = '#0096FF';
-        /*if(this.hasAttribute('bgcolor')){
+        
+        if(this.hasAttribute('bgcolor')){
             bgcol = this.getAttribute('bgcolor');
-        }*/
-
+        }
         //style for shadow dom
         var style = document.createElement('style');
         style.textContent = `.btn-mic-2d{
@@ -37,6 +38,8 @@ class WebSpeechWrapper extends HTMLElement {
                                 padding:7%;
                                 width:50px;
                                 height:50px;
+                                border: none;
+                                transition: color .5s ease-in, background-color .5s ease-in, border .5s ease-in;
                             }
                             .ico-mic-2d{
                                 width:100%;
@@ -69,6 +72,7 @@ class WebSpeechWrapper extends HTMLElement {
     
         recognition.onspeechend = function() {
             recognition.stop();
+            document.querySelector('web-speech').shadowRoot.querySelector('.btn-mic-2d').style.backgroundColor = bgcol;
         }
     
         recognition.onnomatch = function(event) {
