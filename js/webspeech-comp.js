@@ -44,8 +44,9 @@ class WebSpeechWrapper extends HTMLElement {
         var shadow = this.attachShadow({mode:'open'});
         var wrapper = document.createElement('div');
         wrapper.setAttribute('class', 'wrapper');
-
+        
         //UI for component
+ 
         if(!this.hasAttribute('vr')){
             let btn_mic_2d = document.createElement('div');
             btn_mic_2d.setAttribute('class', 'btn-mic-2d');
@@ -65,8 +66,8 @@ class WebSpeechWrapper extends HTMLElement {
             //style for shadow dom
             var style = document.createElement('style');
             style.textContent = `.btn-mic-2d{
-                                    background-color: ${bgcol};
                                     border-radius: 50%;
+                                    background-color:${bgcol};
                                     padding:7%;
                                     width:50px;
                                     height:50px;
@@ -86,8 +87,29 @@ class WebSpeechWrapper extends HTMLElement {
         else{
             console.log('no lolo');
         }
-                
+
         this.init_speech();
+    }
+
+    buildXRUI(){
+        
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        switch(name){
+            case 'vr':
+                if(this.hasAttribute('vr')){
+                    console.log('engaging vr mode');
+                }
+                else{
+                    console.log('in order to use the component reload the page');
+                }
+                break;
+            case 'bgcolor':
+                bgcol = newValue;
+                this.shadowRoot.querySelector('.btn-mic-2d').style.backgroundColor = newValue;
+                break;
+        }
     }
 
     init_speech(){
