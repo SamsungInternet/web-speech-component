@@ -15,4 +15,3 @@ var wsc_onspeechend = function(){
 var wsc_onnomatch = function(){
 
 };
-
