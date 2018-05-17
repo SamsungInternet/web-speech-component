@@ -92,7 +92,11 @@ class WebSpeechWrapper extends HTMLElement {
         btn_mic_3d.setAttribute('color', 'red');
         btn_mic_3d.setAttribute('radius', '.5');
         btn_mic_3d.setAttribute('position','0 1.6 -3');
+        btn_mic_3d.setAttribute('material', 'transparent:true; opacity:.5');
         btn_mic_3d.onclick = this.pushToTalk;
+        let ico_mic_3d = document.createElement('a-entity');
+        ico_mic_3d.setAttribute('gltf-model', 'url(https://diekus.net/web-speech-component/models/mic.glb)');
+        btn_mic_3d.appendChild(ico_mic_3d);
         document.querySelector('a-scene').appendChild(btn_mic_3d);
 
     }
