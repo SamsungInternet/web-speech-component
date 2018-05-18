@@ -89,7 +89,7 @@ class WebSpeechWrapper extends HTMLElement {
 
     build_XR_UI(){
         let ico_mic_3d = document.createElement('a-entity');
-        ico_mic_3d.setAttribute('gltf-model', 'url(https://diekus.net/web-speech-component/models/mic.glb)');
+        ico_mic_3d.setAttribute('gltf-model', 'url(https://diekus.com/web-speech-component/models/mic.glb)');
         ico_mic_3d.setAttribute('scale', '.8 .8 .8');
         ico_mic_3d.setAttribute('position', '0 -1 -2');
         ico_mic_3d.setAttribute('rotation', '-30 0 0')
