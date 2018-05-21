@@ -128,8 +128,8 @@ class WebSpeechWrapper extends HTMLElement {
     }
 
     init_speech(){
-        let words = this.getAttribute('grammar');
-        let comms = words.split(' ');
+        //let words = this.getAttribute('grammar');
+        let comms = ['hide', 'show', 'menu', 'places', 'back'];
         let grammar = '#JSGF V1.0; grammar commands; public <commands> = ' + comms.join(' | ') + ' ;'
     
         recognition = new SpeechRecognition();
