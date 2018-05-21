@@ -8,7 +8,7 @@ let bgcol = '#0096FF';
 class WebSpeechWrapper extends HTMLElement {   
 
     static get observedAttributes() {
-        return ['vr', 'bgcolor'];
+        return ['vr', 'bgcolor', 'grammar'];
     }
 
     get vr() {
@@ -34,6 +34,19 @@ class WebSpeechWrapper extends HTMLElement {
             this.setAttribute('bgcolor', '');
         } else {
             this.removeAttribute('bgcolor');
+        }
+    }
+
+    get grammar() {
+        return this.hasAttribute('grammar');
+    }
+    
+    set grammar(val) {
+        // Reflect the value of `grammar` as an attribute.
+        if (val) {
+            this.setAttribute('grammar', val);
+        } else {
+            this.removeAttribute('grammar');
         }
     }
 
@@ -108,13 +121,16 @@ class WebSpeechWrapper extends HTMLElement {
             case 'bgcolor':
                 bgcol = newValue;
                 break;
+            case 'grammar':
+                this.grammar = newValue;
+                break;
         }
     }
 
     init_speech(){
-    
-        let colors = ['red', 'blue'];
-        let grammar = '#JSGF V1.0; grammar colors; public <color> = ' + colors.join(' | ') + ' ;'
+        let words = this.getAttribute('grammar');
+        let comms = words.split(' ');
+        let grammar = '#JSGF V1.0; grammar commands; public <commands> = ' + comms.join(' | ') + ' ;'
     
         recognition = new SpeechRecognition();
         let speechRecognitionList = new SpeechGrammarList();
