@@ -37,19 +37,6 @@ class WebSpeechWrapper extends HTMLElement {
         }
     }
 
-    get grammar() {
-        return this.hasAttribute('grammar');
-    }
-    
-    set grammar(val) {
-        // Reflect the value of `grammar` as an attribute.
-        if (val) {
-            this.setAttribute('grammar', val);
-        } else {
-            this.removeAttribute('grammar');
-        }
-    }
-
     constructor(){
         super(); 
         this.build_2D_UI();
